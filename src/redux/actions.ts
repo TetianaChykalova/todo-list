@@ -1,18 +1,18 @@
 import { ADD_TODO, CHANGE_STATUS, FILTER_TODOS } from './action-types'
 
-interface AddTodoPayloadAction {
+type AddTodoPayloadAction = {
   name: string,
   id: string,
 }
-interface AddTodoAction {
+type AddTodoAction = {
   type: typeof ADD_TODO,
   payload: AddTodoPayloadAction,
 }
-interface ChangeStatusAction {
+type ChangeStatusAction = {
   type: typeof CHANGE_STATUS,
   payload: string,
 }
-interface FilterTodosAction {
+type FilterTodosAction = {
   type: typeof FILTER_TODOS,
   payload: string
 }
@@ -33,4 +33,9 @@ export const filterTodos = (text: string): FilterTodosAction => ({
   'payload': text,
 })
 
-export type { AddTodoAction, ChangeStatusAction, FilterTodosAction }
+export type {
+  AddTodoAction,
+  AddTodoPayloadAction,
+  ChangeStatusAction,
+  FilterTodosAction,
+}

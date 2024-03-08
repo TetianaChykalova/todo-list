@@ -1,6 +1,11 @@
-// import { UnknownAction } from 'redux'
 import { ADD_TODO, CHANGE_STATUS, FILTER_TODOS } from './action-types'
-import { AddTodoAction, ChangeStatusAction, FilterTodosAction } from './actions'
+import {
+  AddTodoAction,
+  AddTodoPayloadAction,
+  ChangeStatusAction,
+  FilterTodosAction,
+} from './actions'
+import { UnknownAction } from 'redux'
 
 type Todo = {
   name: string
@@ -22,18 +27,19 @@ type ActionTypes = AddTodoAction | ChangeStatusAction | FilterTodosAction
 
 function todosReducer(
   state = initialState,
-  action: ActionTypes,
+  action: ActionTypes | UnknownAction,
 ) {
   switch (action.type) {
     case ADD_TODO: {
+      const { name, id } = action.payload as AddTodoPayloadAction
       return {
         ...state,
         'todos': [
           ...state.todos,
           {
-            'name': action.payload.name,
+            name,
             'complete': false,
-            'id': action.payload.id,
+            id,
           },
         ],
       }
@@ -62,4 +68,4 @@ function todosReducer(
 }
 
 export { todosReducer }
-export type { TodosInitialState }
+export type { TodosInitialState, ActionTypes }
