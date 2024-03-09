@@ -1,9 +1,9 @@
 import React from 'react'
 import AddTodoInput from '../ui/add-todo-input'
 import FilterSelect from '../ui/filter-select'
-import TodoList from './todo-list'
+import TodoList from './todo-list/todo-list'
 
-const Todo = () => {
+const Main = () => {
   return (<div>
     <AddTodoInput />
     <FilterSelect />
@@ -11,4 +11,4 @@ const Todo = () => {
   </div>)
 }
 
-export default Todo
+export default Main

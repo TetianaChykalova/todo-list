@@ -57,6 +57,8 @@ const AddTodoInput = () => {
           { 'display': 'flex', 'alignItems': 'baseline', 'width': '100%' }
         }>
           <TextField
+            color="success"
+            // focused
             error={inputError}
             value={todoText}
             id='filled-error-helper-text'
