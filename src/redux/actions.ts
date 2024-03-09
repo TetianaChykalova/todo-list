@@ -28,9 +28,9 @@ export const changeStatus = (id: string): ChangeStatusAction => ({
   'type': CHANGE_STATUS,
   'payload': id,
 })
-export const filterTodos = (text: string): FilterTodosAction => ({
+export const filterTodos = (filterText: string): FilterTodosAction => ({
   'type': FILTER_TODOS,
-  'payload': text,
+  'payload': filterText,
 })
 
 export type {

@@ -1,0 +1,9 @@
+// Filter variable
+const FILTER_ALL = 'ALL'
+const FILTER_COMPLETE = 'COMPLETE'
+const FILTER_INCOMPLETE = 'INCOMPLETE'
+
+// Todos variable
+const MAX_TODO_CHARS = 50
+
+export { FILTER_ALL, FILTER_COMPLETE, FILTER_INCOMPLETE, MAX_TODO_CHARS }

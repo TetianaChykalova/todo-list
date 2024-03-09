@@ -1,4 +1,5 @@
 import { ADD_TODO, CHANGE_STATUS, FILTER_TODOS } from './action-types'
+import { FILTER_ALL } from '../variables/_variables'
 import {
   AddTodoAction,
   AddTodoPayloadAction,
@@ -14,16 +15,17 @@ type Todo = {
 };
 
 interface TodosInitialState {
-  todos: Todo[],
-  filter: string,
+  'todos': Todo[],
+  'filter': string,
 }
 
 const initialState: TodosInitialState = {
   'todos': [],
-  'filter': 'ALL',
+  'filter': FILTER_ALL,
 }
 
-type ActionTypes = AddTodoAction | ChangeStatusAction | FilterTodosAction
+type ActionTypes =
+  AddTodoAction | ChangeStatusAction | FilterTodosAction
 
 function todosReducer(
   state = initialState,
@@ -59,6 +61,7 @@ function todosReducer(
     case FILTER_TODOS: {
       return {
         ...state,
+        'filter': action.payload as string,
       }
     }
     default: {
@@ -68,4 +71,4 @@ function todosReducer(
 }
 
 export { todosReducer }
-export type { TodosInitialState, ActionTypes }
+export type { TodosInitialState, ActionTypes, Todo }
