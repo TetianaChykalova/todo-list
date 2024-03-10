@@ -7,10 +7,11 @@ import { useDispatch } from 'react-redux'
 import { addTodo } from '../redux/actions'
 import nextId from 'react-id-generator'
 import { MAX_TODO_CHARS } from '../variables/_variables'
+import Tooltip from '@mui/material/Tooltip'
 
 const AddTodoInput = () => {
-  const [todoText, setTodoText] = React.useState<string>('')
-  const [inputError, setInputError] = React.useState<boolean>(false)
+  const [todoText, setTodoText] = React.useState('')
+  const [inputError, setInputError] = React.useState(false)
 
   const dispatch = useDispatch()
 
@@ -58,7 +59,6 @@ const AddTodoInput = () => {
         }>
           <TextField
             color="success"
-            // focused
             error={inputError}
             value={todoText}
             id='filled-error-helper-text'
@@ -77,15 +77,20 @@ const AddTodoInput = () => {
                 },
             }}
           />
-          <Button
-            variant='contained'
-            color='success'
-            startIcon={<PostAddIcon />}
-            disabled={todoText.trim().length === 0 || inputError}
-            onClick={() => handleAddTodoClick(todoText.trim())}
-          >
-            Add
-          </Button>
+            <Button
+              variant='contained'
+              color='success'
+              startIcon={<PostAddIcon />}
+              disabled={todoText.trim().length === 0 || inputError}
+              onClick={() => handleAddTodoClick(todoText.trim())}
+            >
+              <Tooltip
+                title='You can press Enter to add a todo'
+                placement="top" arrow
+              >
+                <span>Add</span>
+              </Tooltip>
+            </Button>
         </Box>
     </Box>
   )

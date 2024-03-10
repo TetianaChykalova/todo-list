@@ -1,18 +1,15 @@
 import React from 'react'
-import { Todo } from '../../redux/reducer'
-import Tooltip from '@mui/material/Tooltip'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import DoneIcon from '@mui/icons-material/Done'
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { useDispatch } from 'react-redux'
 import { changeStatus } from '../../redux/actions'
+import { Todo } from '../../redux/reducer'
+import SingleTodoActions from './single-todo-actions'
+
+import Tooltip from '@mui/material/Tooltip'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
 const SingleTodo = (todo: Todo) => {
   const { name, complete, id } = todo
-
   const dispatch = useDispatch()
 
   const handleCompleteClick = (currentId: string) => {
@@ -21,7 +18,14 @@ const SingleTodo = (todo: Todo) => {
 
   return (<div>
     <Box sx={
-      { 'display': 'flex', 'alignItems': 'center', 'width': '100%' }
+      {
+        'display': 'flex',
+        'alignItems': 'center',
+        'justifyContent': 'space-between',
+        'width': '100%',
+        'borderRadius': '1rem',
+        'background': complete ? '#dedede' : '#fdd835',
+      }
     }>
       <Tooltip title="Click to change status" placement="top-start" arrow>
         <Typography
@@ -29,40 +33,15 @@ const SingleTodo = (todo: Todo) => {
           gutterBottom
           onClick={() => handleCompleteClick(id)}
           sx={{
-            'width': '100%',
-            'background': complete ? '#dedede' : '#fdd835',
+            'width': '80%',
+            'textAlign': 'left',
             'padding': '0.5rem',
-            'borderRadius': '1rem',
-            'display': 'flex',
-            'justifyContent': 'space-between',
-            'alignItems': 'center',
           }}
         >
         {name}
-        <div>
-          <Button>
-            <Tooltip
-              title={complete ? 'Completed' : 'Incompleted'}
-              placement="top" arrow
-            >
-              <DeleteIcon color='secondary' />
-            </Tooltip>
-          </Button>
-          <Button>
-            <Tooltip
-              title={complete ? 'Completed' : 'Incompleted'}
-              placement="top" arrow
-            >
-              {
-                complete
-                  ? <DoneIcon color='success' />
-                  : <AccessTimeFilledIcon color='warning' />
-              }
-            </Tooltip>
-          </Button>
-        </div>
         </Typography>
       </Tooltip>
+      <SingleTodoActions {...todo} />
     </Box>
   </div>)
 }

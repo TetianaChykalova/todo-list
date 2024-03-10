@@ -1,8 +1,14 @@
-import { ADD_TODO, CHANGE_STATUS, FILTER_TODOS } from './action-types'
+import {
+  ADD_TODO,
+  CHANGE_STATUS,
+  FILTER_TODOS,
+  DELETE_TODO,
+  UPDATE_TODO,
+} from './action-types'
 import { FILTER_ALL } from '../variables/_variables'
 import {
   AddTodoAction,
-  AddTodoPayloadAction,
+  TodoPayloadAction,
   ChangeStatusAction,
   FilterTodosAction,
 } from './actions'
@@ -33,7 +39,7 @@ function todosReducer(
 ) {
   switch (action.type) {
     case ADD_TODO: {
-      const { name, id } = action.payload as AddTodoPayloadAction
+      const { name, id } = action.payload as TodoPayloadAction
       return {
         ...state,
         'todos': [
@@ -62,6 +68,29 @@ function todosReducer(
       return {
         ...state,
         'filter': action.payload as string,
+      }
+    }
+    case DELETE_TODO: {
+      return {
+        ...state,
+        'todos': state.todos.filter(
+          (singleTodo: Todo) => {
+            return singleTodo.id !== action.payload
+          },
+        ),
+      }
+    }
+    case UPDATE_TODO: {
+      const { name, id } = action.payload as TodoPayloadAction
+      return {
+        ...state,
+        'todos': state.todos.map((singleTodo: Todo) => {
+          return (
+            singleTodo.id === id
+              ? { ...singleTodo, name }
+              : singleTodo
+          )
+        }),
       }
     }
     default: {

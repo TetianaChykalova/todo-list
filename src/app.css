@@ -4,4 +4,7 @@
 .list-content {
   text-align: center;
   margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
