@@ -19,7 +19,7 @@ const SingleTodoActions = (todo: Todo) => {
   }
 
   return (<div>
-    <SingleTodoEdit {...todo} />
+    { !complete && <SingleTodoEdit {...todo} /> }
     <IconButton
       size="small"
       onClick={() => handleDeleteClick(id)}

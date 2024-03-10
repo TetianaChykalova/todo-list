@@ -79,6 +79,7 @@ const SingleTodoEdit = (todo: Todo) => {
           <TextField
               color="success"
               value={todoTextUpdate}
+              error={inputError}
               id="edit-todo-modal-description"
               placeholder='Edit your todo'
               helperText=
